@@ -94,7 +94,7 @@ class NewListService
     private function RedisSynchronization($id,$products)
     {
         # 设置换成key前缀
-        $result = Redis::hMset('product_'.$id,$products);
+        $result = Redis::hMset('ProductID_'.$id,$products);
         Redis::setKeyTime($id,86400);
         return $result ? 'redis success' : 'redis false';
     }
