@@ -36,7 +36,8 @@ class Products extends BaseController
         # 验证客户端传过来的ID必须是正整数
         (new IDMustBePositiveInt())->goCheck();
         # 再判断redis是否有该产品，如果有则从redis读取，没有则从mysql读取并写入redis
-        $redis_product = Redis::hget('product'.$id);
+        # 拼凑key前缀
+        $redis_product = Redis::hget('product_'.$id);
         if($redis_product){
             return json([
                 'code' => 200,

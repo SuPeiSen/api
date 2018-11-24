@@ -93,7 +93,8 @@ class NewListService
     # mysql查找产品同步写入redis
     private function RedisSynchronization($id,$products)
     {
-        $result = Redis::hMset('product'.$id,$products);
+        # 设置换成key前缀
+        $result = Redis::hMset('product_'.$id,$products);
         Redis::setKeyTime($id,86400);
         return $result ? 'redis success' : 'redis false';
     }
