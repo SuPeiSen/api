@@ -47,14 +47,15 @@ class NewListService
     {
         $model = new NewsList();
         $result =  $model->where('newsid','=',$id)
-                        ->where('status','=',1)
+                         ->where('status','=',1)
             ->find();
         # 先判断产品是否存在，存在则返回要显示的属性
         if(!$result){
             return $result;
         }
         $product =  $result->visible(['newsid','title','thumb','num','success_num','price_min','price_max','date',
-            'interest','condition','check','introduce','px','application_url','phone_num','introduction'])
+            'interest','condition','check','introduce','px','application_url','phone_num',
+            'introduction','address','pay_zfb','app_wx','pay_BankCard','pay_web','pay_Money'])
             ->toArray();
         # 同步写入redis
         $result = $this->RedisSynchronization($id,$product);
