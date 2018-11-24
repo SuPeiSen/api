@@ -55,7 +55,7 @@ class NewListService
         }
         $product =  $result->visible(['newsid','title','thumb','num','success_num','price_min','price_max','date',
             'interest','condition','check','introduce','px','application_url','phone_num',
-            'introduction','address','pay_zfb','app_wx','pay_BankCard','pay_web','pay_Money'])
+            'introduction','address','pay_zfb','pay_wx','pay_BankCard','pay_web','pay_Money'])
             ->toArray();
         # 同步写入redis
         $result = $this->RedisSynchronization($id,$product);
