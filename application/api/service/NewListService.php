@@ -37,7 +37,7 @@ class NewListService
         $model = new NewsList();
         return $model::where("top=1 OR authorid='热门产品'")
             ->where('status','=',1)
-            ->order('px desc')
+            ->order('px asc')
             ->page($page_num,$page_size)
             ->visible(['newsid','title','thumb','date','price_min','price_max','interest','px'])
             ->select()
