@@ -27,7 +27,7 @@ class NewListService
         $model = new NewsList();
         return $model::where("category_id = '今日热门' OR category_id = '本周上线'")
             ->where('status','=',1)
-            ->order('px','desc')
+            ->order('px','asc')
             ->visible(['newsid','title','thumb','date','success_num','category_id'])
             ->select();
     }
@@ -87,6 +87,7 @@ class NewListService
         $model = new NewsList();
         return $model::where('authorid','=',$category_id)
             ->where('status','=',1)
+            ->order('px','asc')
             ->visible(['name','authorid','thumb','title','price_min','price_max',
                 'date','interest','condition','status'])
             ->select()
