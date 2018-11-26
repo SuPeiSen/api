@@ -27,6 +27,7 @@ class NewListService
         $model = new NewsList();
         return $model::where("category_id = '今日热门' OR category_id = '本周上线'")
             ->where('status','=',1)
+            ->order('px','desc')
             ->visible(['newsid','title','thumb','date','success_num','category_id'])
             ->select();
     }
