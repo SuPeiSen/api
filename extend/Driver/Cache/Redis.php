@@ -116,7 +116,7 @@ class Redis
     # 封装redis Hash自增操作
     public static function hincrby($key,$field,$num = 1)
     {
-        return self::getWrite()->hIncrBy($key.$field,$num);
+        return self::getWrite()->hIncrBy($key,$field,$num);
     }
     # 封装redis List左添加
     public static function lpush($key,$value)
