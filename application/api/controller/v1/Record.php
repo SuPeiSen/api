@@ -19,8 +19,9 @@ class Record extends BaseController
     # 记录产品点击量
     public function recordProductNum()
     {
-        $key = Request::post('id');
-        $result = Redis::incr($key);
+        # 拼接产品ip，使用redis的hash自增记录每个产品点击数
+        $ProductsID = 'ProductID'.Request::post('id');
+        $result = Redis::hincrby('OnClickNum',$ProductsID);
         if($result) return 'success';
         return 'false';
     }

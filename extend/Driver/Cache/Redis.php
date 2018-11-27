@@ -86,6 +86,7 @@ class Redis
      # 封装redis赋值Hash操作
     public static function hset($key,$file,$value)
     {
+        if(!self::getWrite()) return false;
         return self::getWrite()->hSet($key,$file,$value);
     }
     # 封装redis多个赋值Hash操作
