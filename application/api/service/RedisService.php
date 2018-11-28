@@ -32,10 +32,10 @@ class RedisService
             array_push($productID_arr,$product_id);
             array_push($productID_num,$value);
         }
-//        $model = new NewsList();
-//        $product_name = $model->value('title')
-//            ->all($productID_arr)
-//            ->toArray();
-        return [$productID_arr,$product_name = 1,$productID_num];
+        $model = new NewsList();
+        $product_name = $model->value('title')
+            ->all($productID_arr)
+            ->toArray();
+        return [$productID_arr,$product_name,$productID_num];
     }
 }
