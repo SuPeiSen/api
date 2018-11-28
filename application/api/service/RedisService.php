@@ -28,7 +28,7 @@ class RedisService
         $productID_arr= array();
         $productID_num= array();
         foreach ($product as $key => $value){
-            $product_id = str_replace("ProductID_","",$key);
+            $product_id = intval(str_replace("ProductID_","",$key));
             array_push($productID_arr,$product_id);
             array_push($productID_num,$value);
         }
