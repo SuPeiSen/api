@@ -33,8 +33,8 @@ class RedisService
             array_push($productID_num,$value);
         }
         $model = new NewsList();
-        $product_name = $model->value('title')
-            ->all($productID_arr)
+        $product_name = $model->all($productID_arr)
+            ->value('title')
             ->toArray();
         return [$productID_arr,$product_name,$productID_num];
     }
