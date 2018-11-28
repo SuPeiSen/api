@@ -33,8 +33,9 @@ class RedisService
             array_push($productID_num,$value);
         }
         $model = new NewsList();
-        $product_name = $model->whereIn('newsid',$productID_arr)
-            ->value('title');
+        $product_name = $model->where('newsid','in',$productID_arr)
+            ->value('title')
+            ->toArray();
         return [$productID_arr,$product_name,$productID_num];
     }
 }
