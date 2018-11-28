@@ -9,6 +9,7 @@
 namespace app\api\service;
 
 
+use app\api\model\NewsList;
 use Driver\Cache\Redis;
 
 class RedisService
@@ -17,6 +18,24 @@ class RedisService
     public static function getOnRedisProductNum()
     {
         $product = Redis::hget('OnClickNum');
-        return $product;
+        $result = self::getProductName($product);
+        return $result;
+    }
+    # 根据id查找出对应产品的详情
+    private function getProductName($product)
+    {
+        # 先把所有id组成一个数组
+        $productID_arr= array();
+        $productID_num= array();
+        foreach ($product as $key => $value){
+            $product_id = substr($key,0,9);
+            array_push($productID_arr,$product_id);
+            array_push($productID_num,$value);
+        }
+        $model = new NewsList();
+        $product_name = $model->value('title')
+            ->all($productID_arr)
+            ->toArray();
+        return [$productID_arr,$product_name,$productID_num];
     }
 }

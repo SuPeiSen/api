@@ -30,8 +30,8 @@ class Record extends BaseController
     # 对外提供Redis里面产品点击数量api
     public function getProductsNum()
     {
-        $productNum = RedisService::getOnRedisProductNum();
-        if(!$productNum){
+        $productArr = RedisService::getOnRedisProductNum();
+        if(!$productArr){
             throw new MysqlErrorException([
                'msg' => '服务器异常',
                'code' => 404
@@ -39,7 +39,9 @@ class Record extends BaseController
         }
         return json([
             'code' => 200,
-            'data' => $productNum
+            'id' => $productArr[0],
+            'title' => $productArr[1],
+            'num' => $productArr[2]
         ]);
     }
 }
