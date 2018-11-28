@@ -39,7 +39,7 @@ class Record extends BaseController
         }
         return json([
             'code' => 200,
-            'date' => $productNum
+            'data' => $productNum
         ]);
     }
 }
