@@ -22,4 +22,4 @@ Route::get('getPage/:id','api/v1.Products/getPage');
     //->pattern(['page_num' => '\d+']);
 
 Route::post('Record','api/v1.Record/recordProductNum');
-Route::get('Num','api/v1.Record/getProductsNum');
+Route::post('Num','api/v1.Record/getProductsNum');
