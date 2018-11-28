@@ -35,8 +35,7 @@ class RedisService
         $model = new NewsList();
         $product_name = $model->where('newsid','in',$productID_arr)
             ->select()
-            ->visible(['title'])
-            ->toArray();
+            ->visible(['title']);
         return [$productID_arr,$product_name,$productID_num];
     }
 }
