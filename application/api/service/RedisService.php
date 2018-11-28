@@ -15,14 +15,14 @@ use Driver\Cache\Redis;
 class RedisService
 {
     # 从redis里面读取产品点击量 把数组
-    public static function getOnRedisProductNum()
+    public function getOnRedisProductNum()
     {
         $product = Redis::hget('OnClickNum');
-        $result = self::getProductName($product);
+        $result = $this->getProductName($product);
         return $result;
     }
     # 根据id查找出对应产品的详情
-    private function getProductName($product)
+    private  function getProductName($product)
     {
         # 先把所有id组成一个数组
         $productID_arr= array();
