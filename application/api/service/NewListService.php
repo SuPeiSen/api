@@ -89,7 +89,7 @@ class NewListService
             ->where('status','=',1)
             ->order('px','asc')
             ->visible(['name','authorid','thumb','title','price_min','price_max',
-                'date','interest','condition','status'])
+                'date','interest','condition','status','newsid'])
             ->select()
             ->toArray();
     }

@@ -22,8 +22,9 @@ class Record extends BaseController
     public function recordProductNum()
     {
         # 拼接产品ip，使用redis的hash自增记录每个产品点击数
-        $ProductsID = 'ProductID_'.Request::param('id');
-        $result = Redis::hincrby('OnClickNum',$ProductsID,1);
+        # 把字符切割成数组 title_id
+        $Products = Request::param('product');
+        $result = Redis::hincrby('OnClickNum',$Products,1);
         if($result) return 'success';
         return 'false';
     }
@@ -31,8 +32,8 @@ class Record extends BaseController
     public function getProductsNum()
     {
         $service = new RedisService();
-        $productArr = $service->getOnRedisProductNum();
-        if(!$productArr){
+        $productAll = $service->getOnRedisProductNum();
+        if(!$productAll){
             throw new MysqlErrorException([
                'msg' => '服务器异常',
                'code' => 404
@@ -40,9 +41,7 @@ class Record extends BaseController
         }
         return json([
             'code' => 200,
-            'id' => $productArr[0],
-            'title' => $productArr[1],
-            'num' => $productArr[2]
+            'date' => $productAll
         ]);
     }
 }
